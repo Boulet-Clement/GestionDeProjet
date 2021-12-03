@@ -15,9 +15,9 @@ $containerBuilder->addDefinitions([
                 'driver' => 'pdo_mysql',
                 'host' => 'mysql',
                 'port' => 3306,
-                'dbname' => 'atelier',
-                'user' => 'btow',
-                'password' => 'btow',
+                'dbname' => '',
+                'user' => '',
+                'password' => '',
                 ]
             ],
         'twig' => [

@@ -2,8 +2,6 @@
 
 namespace Doctrine\Persistence\Mapping\Driver;
 
-use function interface_exists;
-
 /**
  * Locates the file that contains the metadata information for a given class name.
  *
@@ -27,6 +25,7 @@ interface FileLocator
      * @param string|null $globalBasename Passed to allow excluding the basename.
      *
      * @return string[]
+     * @psalm-return list<class-string>
      */
     public function getAllClassNames($globalBasename);
 
@@ -53,5 +52,3 @@ interface FileLocator
      */
     public function getFileExtension();
 }
-
-interface_exists(\Doctrine\Common\Persistence\Mapping\Driver\FileLocator::class);
