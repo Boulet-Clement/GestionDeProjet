@@ -1,2 +1,5 @@
 vendor/
 composer.lock
+node_modules
+.idea/
+composer-lock.json

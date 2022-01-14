@@ -1,0 +1,23 @@
+{
+  "name": "abeille",
+  "version": "1.0.0",
+  "description": "Je suis une abeille",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boulet-Clement/GestionDeProjet.git"
+  },
+  "author": "Groupe 3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boulet-Clement/GestionDeProjet/issues"
+  },
+  "homepage": "https://github.com/Boulet-Clement/GestionDeProjet#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mysql": "^2.18.1"
+  }
+}
