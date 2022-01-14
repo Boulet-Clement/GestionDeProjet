@@ -34,6 +34,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./mysql/:/docker-entrypoint-initdb.d
+      # - ./mysql/snap_bee.sql:/docker-entrypoint-initdb.d/snap_bee.sql
   #####
 
   #####   
