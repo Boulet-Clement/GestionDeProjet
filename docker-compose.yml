@@ -1,0 +1,44 @@
+version: '3'
+
+volumes:
+  logs:
+    driver: local
+
+services:
+  span-bee.app:
+    container_name: span-bee
+    image: node
+    ports:
+      - ${DIST_PORT}:${LOCAL_PORT}
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+      - ./node_modules:/usr/src/outside/node_modules
+    working_dir: /usr/src/app
+    command: bash -c 'npm i && npm run start'
+    links:
+      - db:db
+  #####
+
+
+
+  #####
+  db:
+    container_name: spap_bee.mariadb
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./mysql/:/docker-entrypoint-initdb.d
+  #####
+
+  #####   
+  phpmyadmin:
+    container_name: spap_bee.phpmyadmin
+    image: phpmyadmin
+    ports:
+      - ${DIST_POR_PHPMYADMINT}:${LOCAL_PORT_PHPMYADMIN}
