@@ -1,11 +1,30 @@
-const express = require('express')
-const app = express()
-const port = 3000
+let express = require('express')
+let app = express()
+let bodyParser = require('body-parser')
+let session = require('express-session')
 
+// PORT
+const port = 8080
+
+// Moteur de template
+app.set('view engine', 'ejs');
+
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+// CONNEXION //
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+  res.render('index');
+});
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+app.set('/', (req, res) => {
+  
+});
+
+
+
+
+app.listen(port)
