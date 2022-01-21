@@ -1,45 +1,41 @@
-version: '3'
-
-volumes:
-  logs:
-    driver: local
-
 services:
-  span-bee.app:
-    container_name: span-bee
-    image: node
-    ports:
-      - ${DIST_PORT}:${LOCAL_PORT}
-    env_file:
-      - .env
-    volumes:
-      - .:/usr/src/app
-      - ./node_modules:/usr/src/outside/node_modules
+  iut_abeille:
+    container_name: iut_abeille
+    image: node:lts
+    env_file: ./service/.env
     working_dir: /usr/src/app
-    command: bash -c 'npm i && npm run start'
-    links:
-      - db:db
-  #####
-
-
-
-  #####
-  db:
-    container_name: spap_bee.mariadb
-    image: mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./mysql/:/docker-entrypoint-initdb.d
-      # - ./mysql/snap_bee.sql:/docker-entrypoint-initdb.d/snap_bee.sql
-  #####
-
-  #####   
-  phpmyadmin:
-    container_name: spap_bee.phpmyadmin
-    image: phpmyadmin
+      - ./service/api:/usr/src/app
     ports:
-      - ${DIST_POR_PHPMYADMINT}:${LOCAL_PORT_PHPMYADMIN}
+      - 3535:3000
+    command: npm run watch
+    depends_on:
+      - iut_db_abeille
+    links:
+      - iut_db_abeille
+    networks:
+      - abeille
+
+  iut_adminer_abeille:
+    container_name: iut_adminer_abeille
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - iut_db_abeille
+    networks:
+      - abeille
+
+  iut_db_abeille:
+    container_name: iut_db_abeille
+    image: mariadb:latest
+    env_file: ./service/.env
+    volumes:
+      - ./service/db:/var/lib/mysql
+      - ./service/snap_bee.sql:/docker-entrypoint-initdb.d/1.sql
+    networks:
+      - abeille
+
+networks:
+  abeille:
+    driver: bridge

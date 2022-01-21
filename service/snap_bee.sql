@@ -18,9 +18,9 @@ CREATE SCHEMA IF NOT EXISTS `spap_bee` DEFAULT CHARACTER SET utf8 ;
 USE `spap_bee` ;
 
 -- -----------------------------------------------------
--- Table `spap_bee`.`descition`
+-- Table `spap_bee`.`description`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `spap_bee`.`descition` (
+CREATE TABLE IF NOT EXISTS `spap_bee`.`description` (
   `id_catalogue` INT NOT NULL,
   `nom_latin` VARCHAR(45) NULL,
   `nom_français` VARCHAR(45) NULL,
