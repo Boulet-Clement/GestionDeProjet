@@ -8,19 +8,15 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema spap_bee
+-- Schema iut_db_abeille
 -- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `iut_db_abeille` DEFAULT CHARACTER SET utf8 ;
+USE `iut_db_abeille` ;
 
 -- -----------------------------------------------------
--- Schema spap_bee
+-- Table `iut_db_abeille`.`description`
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `spap_bee` DEFAULT CHARACTER SET utf8 ;
-USE `spap_bee` ;
-
--- -----------------------------------------------------
--- Table `spap_bee`.`description`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `spap_bee`.`description` (
+CREATE TABLE IF NOT EXISTS `iut_db_abeille`.`description` (
   `id_catalogue` INT NOT NULL,
   `nom_latin` VARCHAR(45) NULL,
   `nom_français` VARCHAR(45) NULL,
@@ -36,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `spap_bee`.`user`
+-- Table `iut_db_abeille`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `spap_bee`.`user` (
+CREATE TABLE IF NOT EXISTS `iut_db_abeille`.`user` (
   `id_user` INT NOT NULL,
   `ursername` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
@@ -48,9 +44,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `spap_bee`.`partie`
+-- Table `iut_db_abeille`.`partie`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `spap_bee`.`partie` (
+CREATE TABLE IF NOT EXISTS `iut_db_abeille`.`partie` (
   `id_partie` INT NOT NULL,
   `score` INT NULL,
   `date_start` DATETIME NULL,
@@ -62,3 +58,5 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
