@@ -16,4 +16,20 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/:id', function(req, res, next) {
+    
+    knex.from('description')
+        .select('*')
+        .where({
+            'id_catalogue': req.params.id
+          })
+    .then((rows) => {
+        res.status(200).json(rows);
+    }).catch((err) => { console.log( err); throw err })
+    .finally(() => {
+       // knex.destroy();
+    });
+    
+});
+
 module.exports = router;
