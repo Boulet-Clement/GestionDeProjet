@@ -4,7 +4,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const commandesRouter = require('./routes/commandes');
 const fleursRouter = require('./routes/fleurs');
 
 const app = express();
@@ -17,7 +16,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/commandes', commandesRouter);
 app.use('/fleurs', fleursRouter);
 
 app.listen(port, ()=> {
