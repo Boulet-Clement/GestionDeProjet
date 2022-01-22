@@ -32,8 +32,7 @@ services:
     env_file: ./service/.env
     volumes:
       - ./service/db:/var/lib/mysql
-      - ./service/snap_bee.sql:/docker-entrypoint-initdb.d/1.sql
- #     - ./service/data.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./service/data.sql:/docker-entrypoint-initdb.d/1.sql
     networks:
       - abeille
 
