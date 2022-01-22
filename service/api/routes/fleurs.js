@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         res.status(200).json(rows);
     }).catch((err) => { console.log( err); throw err })
     .finally(() => {
-        knex.destroy();
+        // knex.destroy();
     });
     
 
