@@ -1,4 +1,6 @@
+version: '3'
 services:
+  # iut_abeille
   iut_abeille:
     container_name: iut_abeille
     image: node:lts
@@ -8,7 +10,7 @@ services:
       - ./service/api:/usr/src/app
     ports:
       - 3535:3000
-    command: npm run watch
+    command: npm run start
     depends_on:
       - iut_db_abeille
     links:
@@ -35,7 +37,6 @@ services:
       - ./service/data.sql:/docker-entrypoint-initdb.d/1.sql
     networks:
       - abeille
-
 networks:
   abeille:
     driver: bridge
