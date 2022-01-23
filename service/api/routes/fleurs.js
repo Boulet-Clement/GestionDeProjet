@@ -47,7 +47,7 @@ router.post("/scan", (req, res) => {
         if (err) res.send("Error occured");
       
         // Let us return the QR code image as our response and set it to be the source used in the webpage
-        res.render("scan", { src });
+        res.render("qrcode/qrcodes", { src });
     });
 });
 

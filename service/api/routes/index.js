@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render("index.ejs");
 });
 
+router.get("/scan", (req, res) => {
+  res.render("qrcode/scan.ejs");
+});
+
 module.exports = router;
