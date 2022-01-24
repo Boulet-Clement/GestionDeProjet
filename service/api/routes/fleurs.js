@@ -25,7 +25,7 @@ router.get('/:id', function(req, res, next) {
             'id_catalogue': req.params.id
           })
     .then((rows) => {
-        res.status(200).json(rows);
+        res.render("qrcode/qrcodes", { row })
     }).catch((err) => { console.log( err); throw err })
     .finally(() => {
        // knex.destroy();

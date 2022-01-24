@@ -10,7 +10,7 @@ services:
       - ./service/api:/usr/src/app
     ports:
       - 3535:3000
-    command: npm run start
+    command: npm run watch
     depends_on:
       - iut_db_abeille
     links:
