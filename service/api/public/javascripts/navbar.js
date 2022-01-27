@@ -25,7 +25,6 @@ if(token){
         liLogout.appendChild(aLogout);
 
     dropdown.appendChild(liProfil);
-    dropdown.appendChild(liParam);
     dropdown.appendChild(hr);
     dropdown.appendChild(liLogout);
 
