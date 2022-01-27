@@ -4,6 +4,7 @@ const knex = require('../knex.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const JWT_SECRET = process.env.JWT_SECRET;
 /* SignIn */
 router.get('/signin', function(req, res, next) {
     res.render("users/signin");    
@@ -14,7 +15,6 @@ router.post("/signin", async (req, res) => {
 
     const { username, password } = req.body;
 
- 
     knex.from('user')
     .select('*')
     .where({
@@ -23,8 +23,15 @@ router.post("/signin", async (req, res) => {
     .then((result) => {
         if (!result) { res.status(400).json({ error: "Invalid username or password", status: "error" }); return; }
         compare(password, result.password)
-        res.status(200).json({ status: "ok" });
-        console.log(result)
+        const token = jwt.sign(
+            {
+                id: result._id,
+                username: result.username
+            },
+            JWT_SECRET
+        );
+    
+        res.status(200).json({ data: token, status: "ok" });
     }).catch((err) => { console.log( err); throw err })
 
     async function compare(password, hashed_password){
@@ -32,20 +39,6 @@ router.post("/signin", async (req, res) => {
         if (!await bcrypt.compare(password, hashed_password)) { res.status(400).json({ error: "Invalid username or password", status: "error" }); return; }
             
     }
-/*
-
-    
-
-    const token = jwt.sign(
-        {
-            id: user._id,
-            username: user.username
-        },
-        JWT_SECRET
-    );
-
-    res.status(200).json({ data: token, status: "ok" });
-*/
 });
 
 router.get('/signup', function(req, res, next) {
