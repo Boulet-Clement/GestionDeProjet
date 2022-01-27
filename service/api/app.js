@@ -5,6 +5,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const fleursRouter = require('./routes/fleurs');
+const usersRouter = require('./routes/users');
 
 const app = express();
 const port = 4444
@@ -22,6 +23,7 @@ app.use("/static", express.static(path.join(__dirname, './public')));
 
 app.use('/', indexRouter);
 app.use('/fleurs', fleursRouter);
+app.use('/', usersRouter);
 
 app.listen(port, ()=> {
     console.log(`Serveur is listening at localhost:${port}`)
