@@ -23,9 +23,10 @@ router.get('/:id', function(req, res, next) {
         .select('*')
         .where({
             'id_catalogue': req.params.id
-          })
-    .then((rows) => {
-        res.render("qrcode/qrcodes", { rows })
+          }).first()
+    .then((fleur) => {
+        fleur.photos = "/static/images/" + fleur.photos;
+        res.render("qrcode/carteFleur", { fleur })
     }).catch((err) => { console.log( err); throw err })
     .finally(() => {
        // knex.destroy();
