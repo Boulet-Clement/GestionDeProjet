@@ -1,8 +1,19 @@
 const token = localStorage.getItem("token");
 console.log(token);
 
+const navbar = document.getElementById("my_navbar");
 const dropdown = document.getElementById("menu-dropdown2");
+
 if(token){
+    const liJeu = document.createElement("li");
+    liJeu.classList.add("nav-item");
+        const aJeu = document.createElement("a");
+        aJeu.href="/jeu/start";
+        aJeu.innerText="Jouer";
+        aJeu.classList.add("nav-link");
+    liJeu.appendChild(aJeu);
+    navbar.appendChild(liJeu);
+
     const liProfil = document.createElement("li");
         const aProfil = document.createElement("a");
             aProfil.classList.add("dropdown-item");
@@ -27,8 +38,6 @@ if(token){
     dropdown.appendChild(liProfil);
     dropdown.appendChild(hr);
     dropdown.appendChild(liLogout);
-
-    
 
 }else{
     const liSignup = document.createElement("li");
